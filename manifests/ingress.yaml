@@ -1,0 +1,30 @@
+ apiVersion: networking.k8s.io/v1
+ kind: Ingress
+ metadata:
+   name: thanak81-njmkbhvgcfxdzs-https-ingress
+   namespace: thanak81-njmkbhvgcfxdzs
+   annotations:
+     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+     nginx.ingress.kubernetes.io/use-regex: "true"
+     nginx.ingress.kubernetes.io/proxy-body-size: "5g"    
+     nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
+     nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
+     nginx.ingress.kubernetes.io/rewrite-target: /
+ spec:
+   ingressClassName: nginx
+   tls:
+     - hosts:
+         - thanak81-njmkbhvgcfxdzs.assessify.org
+       secretName: thanak81-njmkbhvgcfxdzs-secret-tls
+   rules:
+     - host: thanak81-njmkbhvgcfxdzs.assessify.org
+       http:
+         paths:
+           - path: /
+             pathType: Prefix
+             backend:
+               service:
+                 name: thanak81-njmkbhvgcfxdzs-service
+                 port:
+                   number: 8335
+ 
