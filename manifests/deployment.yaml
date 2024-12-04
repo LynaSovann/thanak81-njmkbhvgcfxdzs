@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: thanak81-njmkbhvgcfxdzs-deployment
+  labels:
+    app: thanak81-njmkbhvgcfxdzs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: thanak81-njmkbhvgcfxdzs
+  template:
+    metadata:
+      labels:
+        app: thanak81-njmkbhvgcfxdzs
+    spec:
+      containers:
+        - name: thanak81-njmkbhvgcfxdzs-container
+          image: pipejet/thanak81-njmkbhvgcfxdzs:latest
+          ports:
+            - containerPort: 3000
